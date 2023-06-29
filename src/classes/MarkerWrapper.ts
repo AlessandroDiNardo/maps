@@ -47,8 +47,6 @@ export class MarkerWrapper {
                 fillColor: '#EB00FF',
                 scale: 1,
             };
-
-           
         } else {
 
             let vehicleDownCast = this.delivery as Vehicle;
@@ -67,7 +65,6 @@ export class MarkerWrapper {
                 fillColor: '#EB00FF',
                 scale: 1,
             };
-
         }
 
         this.marker.setIcon(iconObj);
