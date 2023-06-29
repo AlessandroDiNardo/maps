@@ -1,6 +1,6 @@
 import { Delivery } from "./Delivery";
 import { Person } from "./Person";
-import { Veichle } from "./Veichle";
+import { Vehicle } from "./Vehicle";
 
 export class MarkerWrapper {
     private marker: google.maps.Marker;
@@ -42,13 +42,13 @@ export class MarkerWrapper {
             });
         }else{
 
-            let veichleDownCast = this.delivery as Veichle;
+            let vehicleDownCast = this.delivery as Vehicle;
             infowindow = new google.maps.InfoWindow({
                 content: `
                 <div>
-                    <strong>Modello: </strong>${veichleDownCast.model}<br>
-                    <strong>Cilindrata: </strong> ${veichleDownCast.cc}<br>
-                    <strong>Immatricolazione: ${veichleDownCast.matriculation}</strong>
+                    <strong>Modello: </strong>${vehicleDownCast.model}<br>
+                    <strong>Cilindrata: </strong> ${vehicleDownCast.cc}<br>
+                    <strong>Immatricolazione: ${vehicleDownCast.matriculation}</strong>
                 </div>
             `
             });

@@ -12,7 +12,7 @@ export class Person extends Delivery{
         this._birthdate = birthdate;
     }
 
-    public get name() {
+    public get name() {       
         return this._name;
     }
     

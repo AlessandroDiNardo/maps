@@ -11,4 +11,9 @@ export class Delivery {
     protected get id() {
         return this._id;
     }
+
+    public printId() {
+
+        console.log('mio id:', this.id);
+    }
 }
