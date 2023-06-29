@@ -26,10 +26,11 @@ export class MarkerWrapper {
     }
 
     addToolTip(googleMap: google.maps.Map) {
- 
-        let infowindow;
 
-        if(this.delivery instanceof Person){
+        let infowindow;
+        let iconObj: any = {};
+
+        if (this.delivery instanceof Person) {
             let personDownCast = this.delivery as Person;
             infowindow = new google.maps.InfoWindow({
                 content: `
@@ -40,7 +41,15 @@ export class MarkerWrapper {
                 </div>
             `
             });
-        }else{
+
+            iconObj = {
+                url: (require('../assets/markerPerson.png')),
+                fillColor: '#EB00FF',
+                scale: 1,
+            };
+
+           
+        } else {
 
             let vehicleDownCast = this.delivery as Vehicle;
             infowindow = new google.maps.InfoWindow({
@@ -53,7 +62,15 @@ export class MarkerWrapper {
             `
             });
 
+             iconObj = {
+                url: (require('../assets/markerCar.png')),
+                fillColor: '#EB00FF',
+                scale: 1,
+            };
+
         }
+
+        this.marker.setIcon(iconObj);
 
         google.maps.event.addListener(this.marker, 'mouseover', function () {
             console.log('dadad');
