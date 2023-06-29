@@ -1,9 +1,12 @@
-export class Person {
+import { Delivery } from "./Delivery";
+
+export class Person extends Delivery{
     private _name: string;
     private _surname: string;
     private _birthdate: string;
 
-    constructor(name: string, surname: string, birthdate: string) {
+    constructor(id: number, name: string, surname: string, birthdate: string) {
+        super(id);
         this._name = name;
         this._surname = surname;
         this._birthdate = birthdate;

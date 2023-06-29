@@ -1,13 +1,15 @@
+import { Delivery } from "./Delivery";
 import { Person } from "./Person";
+import { Veichle } from "./Veichle";
 
 export class MarkerWrapper {
     private marker: google.maps.Marker;
-    private person: Person;
+    private delivery: Delivery;
     private lat: number;
     private lng: number;
 
-    constructor(person: Person, lat: number, lng: number) {
-        this.person = person;
+    constructor(delivery: Delivery, lat: number, lng: number) {
+        this.delivery = delivery;
         this.lat = lat;
         this.lng = lng;
 
@@ -24,15 +26,34 @@ export class MarkerWrapper {
     }
 
     addToolTip(googleMap: google.maps.Map) {
-        let infowindow = new google.maps.InfoWindow({
-            content: `
-            <div>
-                <strong>Nome: </strong>${this.person.name}<br>
-                <strong>Cognome: </strong>${this.person.surname}<br>
-                <strong>Data di nascita: </strong>${this.person.birthdate}
-            </div>
-        `
-        });
+ 
+        let infowindow;
+
+        if(this.delivery instanceof Person){
+            let personDownCast = this.delivery as Person;
+            infowindow = new google.maps.InfoWindow({
+                content: `
+                <div>
+                    <strong>Nome: </strong>${personDownCast.name}<br>
+                    <strong>Cognome: </strong> ${personDownCast.surname}<br>
+                    <strong>Data di nascita: ${personDownCast.birthdate}</strong>
+                </div>
+            `
+            });
+        }else{
+
+            let veichleDownCast = this.delivery as Veichle;
+            infowindow = new google.maps.InfoWindow({
+                content: `
+                <div>
+                    <strong>Modello: </strong>${veichleDownCast.model}<br>
+                    <strong>Cilindrata: </strong> ${veichleDownCast.cc}<br>
+                    <strong>Immatricolazione: ${veichleDownCast.matriculation}</strong>
+                </div>
+            `
+            });
+
+        }
 
         google.maps.event.addListener(this.marker, 'mouseover', function () {
             console.log('dadad');
