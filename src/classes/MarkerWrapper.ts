@@ -1,11 +1,13 @@
+import { Person } from "./Person";
+
 export class MarkerWrapper {
     private marker: google.maps.Marker;
-    private title: string;
+    private person: Person;
     private lat: number;
     private lng: number;
 
-    constructor(title: string, lat: number, lng: number) {
-        this.title = title;
+    constructor(person: Person, lat: number, lng: number) {
+        this.person = person;
         this.lat = lat;
         this.lng = lng;
 
@@ -25,9 +27,9 @@ export class MarkerWrapper {
         let infowindow = new google.maps.InfoWindow({
             content: `
             <div>
-                <strong>Nome:</strong>Carmelo<br>
-                <strong>Cognome:</strong>Petrella<br>
-                <strong>Data di nascita:</strong>07/09/1983
+                <strong>Nome: </strong>${this.person.name}<br>
+                <strong>Cognome: </strong>${this.person.surname}<br>
+                <strong>Data di nascita: </strong>${this.person.birthdate}
             </div>
         `
         });
